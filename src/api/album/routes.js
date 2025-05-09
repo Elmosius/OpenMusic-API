@@ -1,4 +1,4 @@
-const routes = (handler) => [
+const routesAlbum = (handler) => [
   {
     method: "POST",
     path: "/albums",
@@ -8,11 +8,6 @@ const routes = (handler) => [
     method: "GET",
     path: "/albums",
     handler: handler.getAlbumsHandler,
-  },
-  {
-    method: "GET",
-    path: "/albums/{id}",
-    handler: handler.getAlbumByIdHandler,
   },
   {
     method: "PUT",
@@ -26,4 +21,4 @@ const routes = (handler) => [
   },
 ];
 
-module.exports = routes;
+module.exports = routesAlbum;
