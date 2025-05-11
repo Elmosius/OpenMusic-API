@@ -5,7 +5,6 @@ class AlbumsHandler {
 
     this.postAlbumHandler = this.postAlbumHandler.bind(this);
     this.getAlbumsHandler = this.getAlbumsHandler.bind(this);
-    this.getAlbumByIdHandler = this.getAlbumByIdHandler.bind(this);
     this.putAlbumByIdHandler = this.putAlbumByIdHandler.bind(this);
     this.deleteAlbumByIdHandler = this.deleteAlbumByIdHandler.bind(this);
   }
@@ -27,7 +26,7 @@ class AlbumsHandler {
     return response;
   }
 
-  async getAlbumHandler() {
+  async getAlbumsHandler() {
     const albums = await this._service.getAlbums();
     return {
       status: "success",
