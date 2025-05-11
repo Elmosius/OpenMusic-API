@@ -23,7 +23,7 @@ class SongsService {
     return result.rows[0].id;
   }
 
-  async getSong() {
+  async getSongs() {
     const query = {
       text: "SELECT * FROM songs",
     };

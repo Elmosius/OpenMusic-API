@@ -22,7 +22,7 @@ class AlbumsService {
     return result.rows[0].id;
   }
 
-  async getAlbum() {
+  async getAlbums() {
     const query = {
       text: "SELECT * FROM albums",
     };
