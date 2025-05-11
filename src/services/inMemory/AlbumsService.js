@@ -1,6 +1,6 @@
 const { nanoid } = require("nanoid");
 
-class AlbumService {
+class AlbumsService {
   constructor() {
     this._albums = [];
   }
