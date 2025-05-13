@@ -26,8 +26,27 @@ class SongsHandler {
     return response;
   }
 
-  async getSongsHandler() {
-    const songs = await this._service.getSongs();
+  async getSongsHandler(request) {
+    const { title = "", performer = "" } = request.query;
+
+    await this._validator.validateSongQuery({ title, performer });
+
+    let songs = await this._service.getSongs();
+    if (title !== "" || performer !== "") {
+      songs = songs.filter((song) => {
+        const isTitleMatch = song.title.toLowerCase().includes(title.toLowerCase());
+        const isPerformerMatch = song.performer.toLowerCase().includes(performer.toLowerCase());
+
+        if (title !== "" && performer !== "") {
+          return isTitleMatch && isPerformerMatch;
+        }
+        if (title !== "") {
+          return isTitleMatch;
+        }
+        return isPerformerMatch;
+      });
+    }
+
     return {
       status: "success",
       data: {

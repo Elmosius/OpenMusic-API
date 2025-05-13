@@ -2,7 +2,7 @@ const { nanoid } = require("nanoid");
 const { Pool } = require("pg");
 const InvariantError = require("../../exceptions/InvariantError");
 const NotFoundError = require("../../exceptions/NotFoundError");
-const { mapDBtoModel } = require("../../utils");
+const { mapDBtoModelSongs } = require("../../utils");
 
 class SongsService {
   constructor() {
@@ -29,7 +29,7 @@ class SongsService {
     };
 
     const result = await this._pool.query(query);
-    return result.rows.map(mapDBtoModel);
+    return result.rows.map(mapDBtoModelSongs);
   }
 
   async getSongById(id) {
