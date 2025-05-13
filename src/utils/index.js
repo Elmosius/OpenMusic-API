@@ -18,9 +18,9 @@ const mapDBToModelAlbumSong = (rows) => {
   const { id, name, year } = rows[0];
 
   const songs = rows
-    .filter((row) => row.album_id)
+    .filter((row) => row.song_id)
     .map((row) => ({
-      id: row.album.id,
+      id: row.song_id,
       title: row.title,
       performer: row.performer,
     }));
