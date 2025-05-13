@@ -16,7 +16,7 @@ class SongsHandler {
     const songId = await this._service.addSong({ title, year, genre, performer, duration, albumId });
 
     const response = h.response({
-      status: "success",
+      status: 'success',
       data: {
         songId,
       },
@@ -27,20 +27,20 @@ class SongsHandler {
   }
 
   async getSongsHandler(request) {
-    const { title = "", performer = "" } = request.query;
+    const { title = '', performer = '' } = request.query;
 
     await this._validator.validateSongQuery({ title, performer });
 
     let songs = await this._service.getSongs();
-    if (title !== "" || performer !== "") {
+    if (title !== '' || performer !== '') {
       songs = songs.filter((song) => {
         const isTitleMatch = song.title.toLowerCase().includes(title.toLowerCase());
         const isPerformerMatch = song.performer.toLowerCase().includes(performer.toLowerCase());
 
-        if (title !== "" && performer !== "") {
+        if (title !== '' && performer !== '') {
           return isTitleMatch && isPerformerMatch;
         }
-        if (title !== "") {
+        if (title !== '') {
           return isTitleMatch;
         }
         return isPerformerMatch;
@@ -48,7 +48,7 @@ class SongsHandler {
     }
 
     return {
-      status: "success",
+      status: 'success',
       data: {
         songs,
       },
@@ -60,7 +60,7 @@ class SongsHandler {
     const song = await this._service.getSongById(id);
 
     return {
-      status: "success",
+      status: 'success',
       data: {
         song,
       },
@@ -75,8 +75,8 @@ class SongsHandler {
     await this._service.editSongById(id, { title, year, genre, performer, duration, albumId });
 
     return {
-      status: "success",
-      message: "Song berhasil diperbarui",
+      status: 'success',
+      message: 'Song berhasil diperbarui',
     };
   }
 
@@ -86,8 +86,8 @@ class SongsHandler {
     await this._service.deleteSongById(id);
 
     return {
-      status: "success",
-      message: "Song berhasil dihapus",
+      status: 'success',
+      message: 'Song berhasil dihapus',
     };
   }
 }

@@ -16,7 +16,7 @@ class AlbumsHandler {
     const albumId = await this._service.addAlbum({ name, year });
 
     const response = h.response({
-      status: "success",
+      status: 'success',
       data: {
         albumId,
       },
@@ -30,7 +30,7 @@ class AlbumsHandler {
     const { id } = request.params;
     const album = await this._service.getAlbumById(id);
     return {
-      status: "success",
+      status: 'success',
       data: {
         album,
       },
@@ -44,8 +44,8 @@ class AlbumsHandler {
 
     await this._service.editAlbumById(id, { name, year });
     return {
-      status: "success",
-      message: "Album berhasil diperbarui",
+      status: 'success',
+      message: 'Album berhasil diperbarui',
     };
   }
 
@@ -55,8 +55,8 @@ class AlbumsHandler {
     await this._service.deleteAlbumById(id);
 
     return {
-      status: "success",
-      message: "Album berhasil dihapus",
+      status: 'success',
+      message: 'Album berhasil dihapus',
     };
   }
 }
