@@ -81,7 +81,6 @@ class SongsHandler {
   }
 
   async deleteSongByIdHandler(request) {
-    this._validator.validateSongPayload(request.payload);
     const { id } = request.params;
 
     await this._service.deleteSongById(id);
