@@ -25,7 +25,7 @@ class AlbumsService {
 
   async getAlbumById(id) {
     const query = {
-      text: `SELECT a.id, a.name ,a.year, s.album_id, s.title, s.performer FROM albums a LEFT JOIN songs s ON a.id = s.album_id
+      text: `SELECT a.id, a.name ,a.year, s.album_id , s.title, s.performer FROM albums a LEFT JOIN songs s ON a.id = s.album_id
       WHERE a.id = $1
     `,
       values: [id],
@@ -46,7 +46,8 @@ class AlbumsService {
     };
 
     const result = await this._pool.query(query);
-    if (!result.rows[0].id) {
+
+    if (!result.rows.length) {
       throw new NotFoundError("Gagal memperbarui album. Id tidak ditemukan");
     }
   }
@@ -58,7 +59,7 @@ class AlbumsService {
     };
 
     const result = await this._pool.query(query);
-    if (!result.rows[0].id) {
+    if (!result.rows.length) {
       throw new NotFoundError("Album gagal dihapus. Id tidak ditemukan");
     }
   }

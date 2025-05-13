@@ -50,7 +50,6 @@ class AlbumsHandler {
   }
 
   async deleteAlbumByIdHandler(request) {
-    this._validator.validateAlbumPayload(request.payload);
     const { id } = request.params;
 
     await this._service.deleteAlbumById(id);
