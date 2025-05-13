@@ -29,7 +29,7 @@ const mapDBToModelAlbumSong = (rows) => {
     id,
     name,
     year,
-    ...(songs.length ? { songs } : {}),
+    ...{ songs },
   };
 };
 
