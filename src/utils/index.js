@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 const mapDBtoModelSongId = ({ id, title, year, performer, genre, duration, album_id }) => ({
   id,
   title,
