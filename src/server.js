@@ -7,21 +7,25 @@ const albums = require('./api/album');
 const songs = require('./api/song');
 const users = require('./api/users');
 const authentications = require('./api/authentications');
+const collaborations = require('./api/collaborations');
 
 const AlbumsService = require('./services/postgres/AlbumsService');
 const SongsService = require('./services/postgres/SongsService');
 const UsersService = require('./services/postgres/UsersService');
 const AuthenticationsService = require('./services/postgres/AuthenticationsService');
+const CollaborationsService = require('./services/postgres/CollaborationsService');
 
 const AlbumsValidator = require('./validator/albums');
 const SongsValidator = require('./validator/songs');
 const UsersValidator = require('./validator/users');
 const AuthenticationsValidator = require('./validator/authentications');
+const CollaborationsValidator = require('./validator/collaborations');
 
 const TokenManager = require('./token/TokenManager');
 const ClientError = require('./exceptions/ClientError');
 
 const init = async () => {
+  const collaborationsService = new CollaborationsService();
   const albumService = new AlbumsService();
   const songService = new SongsService();
   const userService = new UsersService();
@@ -90,6 +94,14 @@ const init = async () => {
         validator: AuthenticationsValidator,
       },
     },
+    // {
+    //   plugin: collaborations,
+    //   options: {
+    //     collaborationsService,
+    //     playlistsService: playlistsService,
+    //     validator: CollaborationsValidator,
+    //   },
+    // },
   ]);
 
   server.ext('onPreResponse', (request, h) => {
