@@ -33,6 +33,7 @@ class PlaylistSongsService {
     }
 
     await this._activitiesService.addPlaylistSongActivity(playlistId, songId, userId, 'add');
+
     return result.rows[0].id;
   }
 
@@ -69,7 +70,7 @@ class PlaylistSongsService {
     };
   }
 
-  async deletePlayListSong(playlistId, songId, userId) {
+  async deletePlayListSongById(playlistId, songId, userId) {
     const query = {
       text: 'DELETE FROM playlist_songs WHERE playlist_id = $1 AND song_id = $2 RETURNING id',
       values: [playlistId, songId],

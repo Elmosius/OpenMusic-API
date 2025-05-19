@@ -27,10 +27,12 @@ class PlaylistsService {
 
   async getPlaylists(owner) {
     const query = {
-      text: `SELECT playlists.* FROM playlists
-    LEFT JOIN collaborations ON collaborations.playlist_id = playlists.id
-    WHERE playlists.owner = $1 OR collaborations.user_id = $1
-    GROUP BY playlists.id`,
+      text: `SELECT playlists.id, playlists.name, users.username
+           FROM playlists
+           LEFT JOIN collaborations ON collaborations.playlist_id = playlists.id
+           JOIN users ON users.id = playlists.owner
+           WHERE playlists.owner = $1 OR collaborations.user_id = $1
+           GROUP BY playlists.id, playlists.name, users.username`,
       values: [owner],
     };
 
@@ -82,16 +84,6 @@ class PlaylistsService {
         throw error;
       }
     }
-  }
-
-  async getUsersByUsername(username) {
-    const query = {
-      text: 'SELECT id, username, fullname FROM users WHERE username LIKE $1',
-      values: [`%${username}%`],
-    };
-
-    const result = await this._pool.query(query);
-    return result.rows;
   }
 }
 module.exports = PlaylistsService;
