@@ -3,8 +3,8 @@ require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 
-const albums = require('./api/album');
-const songs = require('./api/song');
+const albums = require('./api/albums');
+const songs = require('./api/songs');
 const users = require('./api/users');
 const authentications = require('./api/authentications');
 const collaborations = require('./api/collaborations');
